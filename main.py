@@ -14,8 +14,10 @@ def K_estimation(mat, k, n, m):
 
 
 img = Image.open('pic1.jpg')
+plt.imshow(img, cmap="gray")
+plt.title(f"Original image, size = {img.size}")
+plt.show()
 
-print(f"Orignal image format: {img.format}, Size: {img.size}, Mode: {img.mode}\n")
 k_values = [200, 250, 300, 350, 400, 500, 550, 600, 650, 700]
 n, m = img.size[0], img.size[1]
 pix = np.array(img)
@@ -34,6 +36,5 @@ for k in k_values:
     plt.imshow(image_k, cmap="gray")
     numerator = np.linalg.norm(red_array - K_red_ARR, "fro") ** 2
     denominator = np.linalg.norm(red_array, "fro") ** 2
-    print(f"Relative approximation error for k={k} is {numerator / denominator}. Picture:")
+    plt.title(f"K={k}, Relative approximation error = {numerator / denominator}")
     plt.show()
-    print()
